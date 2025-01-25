@@ -1,36 +1,37 @@
-<androidx.cardview.widget.CardView
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:cardCornerRadius="12dp">
-
+    android:layout_marginBottom="8dp"
+>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <ImageView
-            android:id="@+id/imageViewExercise"
+            android:id="@+id/imageViewWorkout"
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            />
+<!--            android:contentDescription="@string/workout_image"-->
 
         <TextView
             android:id="@+id/textViewTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="Exercise Title"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:layout_marginTop="8dp"
+            android:text="Workout Title"
+            android:textAppearance="?attr/textAppearanceHeadline6" />
 
         <TextView
             android:id="@+id/textViewDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="Description of the workout"
-            android:textSize="14sp" />
+            android:layout_marginTop="4dp"
+            android:text="Workout Description"
+            android:textAppearance="?attr/textAppearanceBody2" />
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

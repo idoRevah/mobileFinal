@@ -1,4 +1,4 @@
-package com.example.mobilefinal.ui.home
+package com.example.mobilefinal.ui.workoutsLibrary
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
