@@ -1,7 +1,7 @@
 package com.example.mobilefinal.model
 
 data class Exercise(
-//    val id: String = "", // should be reconsidered - looks unused
+    val id: String = "", // should be reconsidered - looks unused
 //    val imageUrl: String = "", // should be reconsidered - maybe from generic list
 //    val duration: Int = 0, // should be reconsidered - maybe 5m for each one for build workout
     val name: String = "", // must have

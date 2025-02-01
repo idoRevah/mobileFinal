@@ -1,10 +1,13 @@
 package com.example.mobilefinal.ui.workoutsLibrary
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.mobilefinal.model.Workout
 import com.example.mobilefinal.repository.WorkoutRepository
+import kotlinx.coroutines.launch
 
 class WorkoutLibraryViewModel: ViewModel() {
 
@@ -14,10 +17,17 @@ class WorkoutLibraryViewModel: ViewModel() {
     val workouts: LiveData<List<Workout>> get() = _workouts
 
     init {
-        fetchWorkouts()
+        this.fetchWorkouts()
     }
 
     private fun fetchWorkouts() {
-        _workouts.value = repository.getWorkouts()
+        viewModelScope.launch {
+            try {
+                val fetchedWorkouts = repository.getWorkouts()
+                _workouts.value = fetchedWorkouts
+            } catch (e: Exception) {
+                Log.e("WorkoutLibraryViewModel", "Error fetching workouts", e)
+            }
+        }
     }
 }
