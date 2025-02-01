@@ -58,4 +58,5 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("org.json:json:20231013")
+    implementation("com.google.firebase:firebase-firestore-ktx:24.10.1")
 }

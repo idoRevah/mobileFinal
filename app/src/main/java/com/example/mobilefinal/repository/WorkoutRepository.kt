@@ -2,8 +2,12 @@ package com.example.mobilefinal.repository
 
 import android.util.Log
 import com.example.mobilefinal.model.Workout
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.tasks.await
 
 class WorkoutRepository {
+    private val db = FirebaseFirestore.getInstance()
+
     private val mockWorkouts = listOf(
         Workout(
             id = "1",
@@ -37,13 +41,22 @@ class WorkoutRepository {
         )
     )
 
-    // TODO: implement as workouts repository from backend
-    fun getWorkouts(): List<Workout> {
-        try {
-            return mockWorkouts
+    suspend fun getWorkouts(): List<Workout> {
+        return try {
+            val querySnapshot = db.collection("workouts").get().await()
+            val workouts = mutableListOf<Workout>()
+
+            for (document in querySnapshot.documents) {
+                val workout = document.toObject(Workout::class.java)
+                workout?.let {
+                    workouts.add(it)
+                }
+            }
+
+            return workouts
         } catch (e: Exception) {
-//            Log.d("")
-            throw e
+            Log.e("WorkoutRepository", "Error getting workouts", e)
+            emptyList()
         }
     }
 }
