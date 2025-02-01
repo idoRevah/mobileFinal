@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.mobilefinal.ui.login.AuthViewModel
 import com.example.mobilefinal.R
 import com.example.mobilefinal.databinding.FragmentLoginBinding
 import com.google.android.material.snackbar.Snackbar

@@ -7,8 +7,9 @@ import kotlinx.coroutines.launch
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.LiveData
 
-class AuthViewModel(private val repository: AuthRepository) : ViewModel() {
+class AuthViewModel() : ViewModel() {
 
+    private val repository: AuthRepository = AuthRepository()
     private val _authState = MutableLiveData<Boolean>() // True if logged in
     val authState: LiveData<Boolean> get() = _authState
 
