@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mobilefinal.R
 import com.example.mobilefinal.databinding.FragmentWorkoutLibraryBinding
 import com.example.mobilefinal.model.Workout
 
@@ -30,7 +32,12 @@ class WorkoutLibraryFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(WorkoutLibraryViewModel::class.java)
 
         val adapter = WorkoutAdapter(emptyList()) { workout ->
-            // TODO: Handle workout click
+            val bundle = Bundle().apply {
+                putString("workoutId", workout.id)
+            }
+
+            findNavController().navigate(R.id.action_workoutLibraryFragment_to_exerciseListFragment, bundle)
+
         }
 
         binding.recyclerViewWorkouts.layoutManager = LinearLayoutManager(requireContext())
