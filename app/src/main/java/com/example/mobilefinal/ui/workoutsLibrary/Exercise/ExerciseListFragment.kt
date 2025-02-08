@@ -21,13 +21,15 @@ class ExerciseListFragment: Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentExerciseListBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        
         // Back Navigation
+
 //        binding.toolbar.setNavigationOnClickListener {
 //            findNavController().navigateUp()
 //        }
