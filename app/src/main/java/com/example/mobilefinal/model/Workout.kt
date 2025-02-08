@@ -8,5 +8,5 @@ data class Workout (
     val title: String = "",
     val description: String = "",
     val imageUrl: String = "",
-    val exercises: List<Exercise> = emptyList()
+    val exercises: List<String> = emptyList()
 )
