@@ -60,4 +60,12 @@ class ExerciseRepository {
         }
         return list
     }
+
+    public  fun getExerciseById(id: String): Exercise {
+        return Exercise(id = "sdf", equipment = "No equipment needed",
+            targetMuscles = "Biceps",
+            secondaryMuscles = "Triceps",
+            gifUrl = "https://cdn.dribbble.com/users/5501300/screenshots/15456745/media/ebfa85d44e6577c89166446d06840c28.gif",
+            description = "blkdaj;lkfjds flkds jf;lkds jf lksjdf lkjdsafkaljd flkdjf kdsf dsalkjf hdskjf hslkjf \n kjdsf h;lkd hfa;ks dsaf\n skdfh s;lkdf hdskf\n ksdhfkjdshfkjdsflkjsa fdsj hfkjdsafh lkjd skj hlkjf")
+    }
 }

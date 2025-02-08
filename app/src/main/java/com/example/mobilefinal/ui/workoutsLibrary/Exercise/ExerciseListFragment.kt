@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mobilefinal.R
 import com.example.mobilefinal.adapters.ExerciseAdapter
 import com.example.mobilefinal.databinding.FragmentExerciseListBinding
 import com.example.mobilefinal.model.Exercise
@@ -41,7 +42,18 @@ class ExerciseListFragment: Fragment() {
         exercises.addAll(getExercisesForWorkout(workoutId))
 
         // Setup RecyclerView
-        exerciseAdapter = ExerciseAdapter(exercises)
+
+
+        exerciseAdapter = ExerciseAdapter(exercises){ exercise ->
+            val bundle = Bundle().apply {
+                putString("exerciseId", exercise.id)
+            }
+
+            findNavController().navigate(R.id.exerciseDetailsFragment, bundle)
+
+        }
+
+
         binding.recyclerViewExercises.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = exerciseAdapter

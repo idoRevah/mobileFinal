@@ -53,4 +53,23 @@
             android:name="workoutId"
             app:argType="string" />
     </action>
+
+    <fragment
+        android:id="@+id/exerciseDetailsFragment"
+        android:name="com.example.mobilefinal.ui.workoutsLibrary.Exercise.ExerciseDetailsFragment"
+        android:label="Exercise Details">
+        <!-- Passing workout ID when navigating -->
+        <argument
+            android:name="exerciseId"
+            app:argType="string" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_exerciseListFragment_to_exerciseDetailsFragment"
+        app:destination="@id/exerciseDetailsFragment">
+        <argument
+            android:name="exerciseId"
+            app:argType="string" />
+    </action>
+
 </navigation>

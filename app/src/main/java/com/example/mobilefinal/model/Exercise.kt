@@ -6,4 +6,8 @@ data class Exercise(
     val name: String = "", // must have
     val description: String = "", // must have
     var muscle: String = "", // must have
+    val targetMuscles: String = "",
+    val secondaryMuscles: String = "",
+    val equipment: String = "",
+
     )
