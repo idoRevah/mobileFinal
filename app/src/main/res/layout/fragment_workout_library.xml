@@ -4,10 +4,14 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="16dp">
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewWorkouts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_workout" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="sfdsfsd" />
 </androidx.constraintlayout.widget.ConstraintLayout>
