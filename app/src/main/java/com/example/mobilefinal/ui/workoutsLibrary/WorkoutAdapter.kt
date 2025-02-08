@@ -40,6 +40,7 @@ class WorkoutAdapter(
         holder.itemView.setOnClickListener {
             onClick(workout)
         }
+
     }
 
     override fun getItemCount(): Int = workouts.size

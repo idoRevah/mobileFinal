@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) // 🔙 Enable Back Button
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         viewModel.authState.observe(this) { isLoggedIn ->
             if (!isLoggedIn) {
@@ -39,5 +41,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.checkUserLoggedIn() // Check authentication state on startup
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed() // 🔙 Handle Back Action
+        return true
     }
 }
