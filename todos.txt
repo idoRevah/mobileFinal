@@ -1,0 +1,4 @@
+to do:
+fix login
+fix nav with login
+connect entities to db
