@@ -42,23 +42,23 @@ class WorkoutRepository {
     )
 
     suspend fun getWorkouts(): List<Workout> {
-            return mockWorkouts
+//            return mockWorkouts
 
-    //        return try {
-//            val querySnapshot = db.collection("workouts").get().await()
-//            val workouts = mutableListOf<Workout>()
-//
-//            for (document in querySnapshot.documents) {
-//                val workout = document.toObject(Workout::class.java)
-//                workout?.let {
-//                    workouts.add(it)
-//                }
-//            }
-//
-//            return workouts
-//        } catch (e: Exception) {
-//            Log.e("WorkoutRepository", "Error getting workouts", e)
-//            emptyList()
-//        }
+            return try {
+            val querySnapshot = db.collection("workouts").get().await()
+            val workouts = mutableListOf<Workout>()
+
+            for (document in querySnapshot.documents) {
+                val workout = document.toObject(Workout::class.java)
+                workout?.let {
+                    workouts.add(it)
+                }
+            }
+
+            return workouts
+        } catch (e: Exception) {
+            Log.e("WorkoutRepository", "Error getting workouts", e)
+            emptyList()
+        }
     }
 }
