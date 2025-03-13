@@ -80,7 +80,7 @@ class WorkoutRepository {
         }
     }
 
-    suspend fun addLikeToWorkout(workoutId: String) {
+    suspend fun likeWorkout(workoutId: String) {
         try {
             val workoutRef = db.collection("workouts").document(workoutId)
             db.runTransaction { transaction ->
