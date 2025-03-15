@@ -33,6 +33,28 @@ class ExerciseRepository {
         }
     }
 
+    suspend fun getExerciseById(exerciseId: String): Result<Exercise> {
+        val url = "https://exercisedb-api.vercel.app/api/v1/exercises/$exerciseId" // Corrected URL
+
+        val request = Request.Builder()
+            .url(url)
+            .build()
+
+        return try {
+            client.newCall(request).execute().use { response ->
+                if (!response.isSuccessful) {
+                    return Result.failure(IOException("Unexpected code ${response.code}"))
+                }
+
+                val responseBody = response.body?.string() ?: ""
+                val exercise = parseExerciseById(responseBody)
+                Result.success(exercise)
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
     private fun parseExercises(jsonString: String): List<Exercise> {
         val exercises = mutableListOf<Exercise>()
         val jsonObject = JSONObject(jsonString)
@@ -51,6 +73,18 @@ class ExerciseRepository {
             }
         }
         return exercises
+    }
+
+    private fun parseExerciseById(jsonString: String): Exercise {
+        val jsonObject = JSONObject(jsonString)
+        val data = jsonObject.getJSONObject("data")
+        return Exercise(
+            id = data.getString("exerciseId"),
+            name = data.getString("name"),
+            gifUrl = data.getString("gifUrl"),
+            muscle = jsonArrayToStringList(data.getJSONArray("targetMuscles"))[0],
+            description = jsonArrayToStringList(data.getJSONArray("instructions")).joinToString(",")
+        )
     }
 
     private fun jsonArrayToStringList(jsonArray: JSONArray): List<String> {
