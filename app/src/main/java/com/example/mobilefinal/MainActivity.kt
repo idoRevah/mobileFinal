@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true) // 🔙 Enable Back Button
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
         viewModel.authState.observe(this) { isLoggedIn ->
