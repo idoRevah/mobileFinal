@@ -1,6 +1,8 @@
 package com.example.mobilefinal.repository
 
 import com.example.mobilefinal.model.Exercise
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONArray
@@ -34,24 +36,27 @@ class ExerciseRepository {
     }
 
     suspend fun getExerciseById(exerciseId: String): Result<Exercise> {
-        val url = "https://exercisedb-api.vercel.app/api/v1/exercises/$exerciseId" // Corrected URL
+        return withContext(Dispatchers.IO) { // ✅ Run in background thread
+            val url = "https://exercisedb-api.vercel.app/api/v1/exercises/$exerciseId"
+            val request = Request.Builder().url(url).build()
 
-        val request = Request.Builder()
-            .url(url)
-            .build()
+            try {
+                client.newCall(request).execute().use { response ->
+                    if (!response.isSuccessful) {
+                        return@withContext Result.failure(IOException("Unexpected code ${response.code}"))
+                    }
 
-        return try {
-            client.newCall(request).execute().use { response ->
-                if (!response.isSuccessful) {
-                    return Result.failure(IOException("Unexpected code ${response.code}"))
+                    val responseBody = response.body?.string()
+                    if (responseBody.isNullOrEmpty()) {
+                        return@withContext Result.failure(IOException("Empty response body"))
+                    }
+
+                    val exercise = parseExerciseById(responseBody)
+                    Result.success(exercise) // ✅ Corrected return
                 }
-
-                val responseBody = response.body?.string() ?: ""
-                val exercise = parseExerciseById(responseBody)
-                Result.success(exercise)
+            } catch (e: Exception) {
+                Result.failure(e) // ✅ Error handling remains the same
             }
-        } catch (e: Exception) {
-            Result.failure(e)
         }
     }
 

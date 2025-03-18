@@ -8,8 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobilefinal.R
 import com.example.mobilefinal.model.Exercise
+import com.example.mobilefinal.model.Workout
 
-class ExerciseAdapter(private val exercises: List<Exercise>) :
+class ExerciseAdapter(private var exercises: List<Exercise>) :
     RecyclerView.Adapter<ExerciseAdapter.ExerciseViewHolder>() {
 
     inner class ExerciseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -32,4 +33,9 @@ class ExerciseAdapter(private val exercises: List<Exercise>) :
     }
 
     override fun getItemCount() = exercises.size
+
+    fun updateData(newExercises: List<Exercise>) {
+        exercises = newExercises
+        notifyDataSetChanged()
+    }
 }

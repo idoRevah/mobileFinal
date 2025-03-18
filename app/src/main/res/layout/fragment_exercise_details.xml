@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="16dp">
+
+    <!-- Back Button & Title -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Some Exercise"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <!-- GIF Image -->
+    <ImageView
+        android:id="@+id/imageViewExerciseGif"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
+        />
+
+    <!-- Description -->
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Exercise description goes here..."
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:padding="8dp" />
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#7C7C7C"
+        android:layout_marginVertical="8dp" />
+
+    <!-- Target Muscles Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="8dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/primary_muscle"
+            android:contentDescription="Target Muscles Icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Target Muscles:"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewTargetMuscles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Biceps, Upper Chest"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="32dp" />
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="@drawable/primary_muscle"
+        android:layout_marginVertical="8dp" />
+
+    <!-- Secondary Muscles Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="8dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/primary_muscle"
+            android:contentDescription="Secondary Muscles Icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Secondary Muscles:"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewSecondaryMuscles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Triceps"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="32dp" />
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="@drawable/primary_muscle"
+        android:layout_marginVertical="8dp" />
+
+    <!-- Equipment Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="8dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/primary_muscle"
+            android:contentDescription="Equipment Icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Equipment:"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewEquipment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No equipment needed"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="32dp" />
+
+</LinearLayout>

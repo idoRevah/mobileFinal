@@ -31,6 +31,16 @@
         android:name="com.example.mobilefinal.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+
+
+
+
+
+
+
+
+
     <fragment
         android:id="@+id/navigation_workoutLibrary"
         android:name="com.example.mobilefinal.ui.workoutsLibrary.WorkoutLibraryFragment"
@@ -39,7 +49,7 @@
 
     <fragment
         android:id="@+id/exerciseListFragment"
-        android:name="com.example.mobilefinal.ui.workoutsLibrary.Exercise.ExerciseListFragment"
+        android:name="com.example.mobilefinal.ui.workoutsLibrary.WorkoutExercises.ExerciseListFragment"
         android:label="Workout Exercises">
         <!-- Passing workout ID when navigating -->
         <argument

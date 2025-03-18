@@ -1,11 +1,12 @@
-package com.example.mobilefinal.ui.workoutsLibrary.Exercise
+package com.example.mobilefinal.ui.workoutsLibrary.WorkoutExercises
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mobilefinal.adapters.ExerciseAdapter
 import com.example.mobilefinal.databinding.FragmentExerciseListBinding
@@ -15,6 +16,7 @@ class ExerciseListFragment: Fragment() {
 
     private lateinit var binding: FragmentExerciseListBinding
     private lateinit var exerciseAdapter: ExerciseAdapter
+    private val viewModel: WorkoutExercisesViewModel by viewModels()
     private val exercises = mutableListOf<Exercise>()
 
     override fun onCreateView(
@@ -34,13 +36,21 @@ class ExerciseListFragment: Fragment() {
 //            findNavController().navigateUp()
 //        }
 
-        // Get workout ID from arguments
-        val workoutId = arguments?.getString("workoutId") ?: return
+        setupRecyclerView()
 
-        // Load exercises for this workout
-        exercises.addAll(getExercisesForWorkout(workoutId))
+        // bind between recyclerview to the viewmodel's workouts
+        viewModel.workoutExercises.observe(viewLifecycleOwner) { exercises ->
+            exerciseAdapter.updateData(exercises)
+        }
+    }
 
-        // Setup RecyclerView
+    private fun getWorkoutIdFromArgs(): String {
+        val args = ExerciseListFragmentArgs.fromBundle(requireArguments())
+
+        return args.workoutId
+    }
+
+    private fun setupRecyclerView() {
         exerciseAdapter = ExerciseAdapter(exercises)
         binding.recyclerViewExercises.apply {
             layoutManager = LinearLayoutManager(requireContext())
