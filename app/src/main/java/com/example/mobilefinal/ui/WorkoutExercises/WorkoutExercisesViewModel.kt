@@ -1,4 +1,4 @@
-package com.example.mobilefinal.ui.workoutsLibrary.WorkoutExercises
+package com.example.mobilefinal.ui.WorkoutExercises
 
 import android.util.Log
 import androidx.lifecycle.LiveData

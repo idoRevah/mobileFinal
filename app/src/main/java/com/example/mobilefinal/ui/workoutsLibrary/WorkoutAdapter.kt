@@ -18,7 +18,7 @@ class WorkoutAdapter(
     inner class WorkoutViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageViewWorkout)
         val titleView: TextView = itemView.findViewById(R.id.textViewTitle)
-        val descriptionView: TextView = itemView.findViewById(R.id.textViewDescription)
+        val descriptionView: TextView = itemView.findViewById(R.id.text_view_name)
     }
 
     // Invokes on Initialize, creating enough views to fill the screen

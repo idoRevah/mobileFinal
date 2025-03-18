@@ -52,6 +52,9 @@ class ExerciseRepository {
                     }
 
                     val exercise = parseExerciseById(responseBody)
+
+                    var gifRepository: GifsRepository = GifsRepository()
+                    exercise.gifUrl = gifRepository.getGifUrlById(exercise.id) ?: exercise.gifUrl
                     Result.success(exercise) // ✅ Corrected return
                 }
             } catch (e: Exception) {
@@ -72,7 +75,9 @@ class ExerciseRepository {
                     name = exerciseObject.getString("name"),
                     gifUrl = exerciseObject.getString("gifUrl"),
                     muscle = jsonArrayToStringList(exerciseObject.getJSONArray("targetMuscles"))[0],
-                    description = jsonArrayToStringList(exerciseObject.getJSONArray("instructions")).joinToString(",")
+                    description = jsonArrayToStringList(exerciseObject.getJSONArray("instructions")).joinToString("\n"),
+                    equipment = jsonArrayToStringList(exerciseObject.getJSONArray("equipments")).joinToString(", "),
+                    secondaryMuscles = jsonArrayToStringList(exerciseObject.getJSONArray("secondaryMuscles")).joinToString(", "),
                 )
                 exercises.add(exercise)
             }
@@ -88,8 +93,10 @@ class ExerciseRepository {
             name = data.getString("name"),
             gifUrl = data.getString("gifUrl"),
             muscle = jsonArrayToStringList(data.getJSONArray("targetMuscles"))[0],
-            description = jsonArrayToStringList(data.getJSONArray("instructions")).joinToString(",")
-        )
+            description = jsonArrayToStringList(data.getJSONArray("instructions")).joinToString("\n\n"),
+            equipment = jsonArrayToStringList(data.getJSONArray("equipments")).joinToString(", "),
+            secondaryMuscles = jsonArrayToStringList(data.getJSONArray("secondaryMuscles")).joinToString(", "),
+            )
     }
 
     private fun jsonArrayToStringList(jsonArray: JSONArray): List<String> {
