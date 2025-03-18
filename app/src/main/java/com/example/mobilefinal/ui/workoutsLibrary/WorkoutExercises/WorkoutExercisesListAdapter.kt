@@ -16,7 +16,7 @@ class ExerciseAdapter(private var exercises: List<Exercise>) :
     inner class ExerciseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageView: ImageView = view.findViewById(R.id.imageViewExercise)
         val textViewTitle: TextView = view.findViewById(R.id.textViewTitle)
-        val textViewDescription: TextView = view.findViewById(R.id.textViewDescription)
+        val textViewDescription: TextView = view.findViewById(R.id.textViewMuscle)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseViewHolder {
@@ -28,7 +28,7 @@ class ExerciseAdapter(private var exercises: List<Exercise>) :
     override fun onBindViewHolder(holder: ExerciseViewHolder, position: Int) {
         val exercise = exercises[position]
         holder.textViewTitle.text = exercise.name
-        holder.textViewDescription.text = exercise.description
+        holder.textViewDescription.text = exercise.muscle
         holder.imageView.setImageResource(R.drawable.ex) // Default Image
     }
 

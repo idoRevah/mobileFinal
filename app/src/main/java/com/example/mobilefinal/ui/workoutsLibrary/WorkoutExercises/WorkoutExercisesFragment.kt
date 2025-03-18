@@ -30,13 +30,7 @@ class ExerciseListFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
-        // Back Navigation
-
-//        binding.toolbar.setNavigationOnClickListener {
-//            findNavController().navigateUp()
-//        }
-
-        setupRecyclerView()
+          setupRecyclerView()
 
         // bind between recyclerview to the viewmodel's workouts
         viewModel.workoutExercises.observe(viewLifecycleOwner) { exercises ->
