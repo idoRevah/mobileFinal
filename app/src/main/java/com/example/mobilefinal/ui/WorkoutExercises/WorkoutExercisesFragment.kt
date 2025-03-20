@@ -1,20 +1,25 @@
-package com.example.mobilefinal.ui.workoutsLibrary.Exercise
+package com.example.mobilefinal.ui.WorkoutExercises
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.mobilefinal.adapters.ExerciseAdapter
+import com.example.mobilefinal.R
+import com.example.mobilefinal.adapters.WorkoutExercisesListAdapter
 import com.example.mobilefinal.databinding.FragmentExerciseListBinding
 import com.example.mobilefinal.model.Exercise
 
 class ExerciseListFragment: Fragment() {
 
     private lateinit var binding: FragmentExerciseListBinding
-    private lateinit var exerciseAdapter: ExerciseAdapter
+    private lateinit var exerciseAdapter: WorkoutExercisesListAdapter
+    private val viewModel: WorkoutExercisesViewModel by viewModels()
     private val exercises = mutableListOf<Exercise>()
 
     override fun onCreateView(
@@ -28,24 +33,34 @@ class ExerciseListFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
-        // Back Navigation
+          setupRecyclerView()
 
-//        binding.toolbar.setNavigationOnClickListener {
-//            findNavController().navigateUp()
-//        }
+        // bind between recyclerview to the viewmodel's workouts
+        viewModel.workoutExercises.observe(viewLifecycleOwner) { exercises ->
+            exerciseAdapter.updateData(exercises)
+        }
+    }
 
-        // Get workout ID from arguments
-        val workoutId = arguments?.getString("workoutId") ?: return
+    private fun getWorkoutIdFromArgs(): String {
+        val args = ExerciseListFragmentArgs.fromBundle(requireArguments())
 
-        // Load exercises for this workout
-        exercises.addAll(getExercisesForWorkout(workoutId))
+        return args.workoutId
+    }
 
-        // Setup RecyclerView
-        exerciseAdapter = ExerciseAdapter(exercises)
+    private fun setupRecyclerView() {
+        exerciseAdapter = WorkoutExercisesListAdapter(exercises) { exerciseId -> navigateToExerciseDetails(exerciseId)}
         binding.recyclerViewExercises.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = exerciseAdapter
         }
+    }
+
+    private fun navigateToExerciseDetails(exerciseId: String) {
+        val bundle = Bundle().apply {
+            putString("exerciseId", exerciseId)
+        }
+
+        findNavController().navigate(R.id.action_exerciseListFragment_to_exerciseDetailsFragment, bundle)
     }
 
     private fun getExercisesForWorkout(workoutId: String): List<Exercise> {

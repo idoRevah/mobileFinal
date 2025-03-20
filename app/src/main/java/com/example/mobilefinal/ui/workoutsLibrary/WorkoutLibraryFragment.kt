@@ -37,7 +37,6 @@ class WorkoutLibraryFragment : Fragment() {
             }
 
             findNavController().navigate(R.id.action_workoutLibraryFragment_to_exerciseListFragment, bundle)
-
         }
 
         binding.recyclerViewWorkouts.layoutManager = LinearLayoutManager(requireContext())

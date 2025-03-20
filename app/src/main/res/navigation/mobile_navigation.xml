@@ -31,6 +31,16 @@
         android:name="com.example.mobilefinal.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+
+
+
+
+
+
+
+
+
     <fragment
         android:id="@+id/navigation_workoutLibrary"
         android:name="com.example.mobilefinal.ui.workoutsLibrary.WorkoutLibraryFragment"
@@ -39,7 +49,7 @@
 
     <fragment
         android:id="@+id/exerciseListFragment"
-        android:name="com.example.mobilefinal.ui.workoutsLibrary.Exercise.ExerciseListFragment"
+        android:name="com.example.mobilefinal.ui.WorkoutExercises.ExerciseListFragment"
         android:label="Workout Exercises">
         <!-- Passing workout ID when navigating -->
         <argument
@@ -52,5 +62,19 @@
         <argument
             android:name="workoutId"
             app:argType="string" />
+    </action>
+    <fragment
+        android:id="@+id/exerciseDetailsFragment"
+        android:name="com.example.mobilefinal.ui.exerciseDetails.ExerciseDetailsFragment"
+        android:label="Exercise Details">
+        <argument
+            android:name="exerciseId"
+            app:argType="string"/>
+    </fragment>
+    <action
+        android:id="@+id/action_exerciseListFragment_to_exerciseDetailsFragment"
+        app:destination="@id/exerciseDetailsFragment" ><argument
+        android:name="exerciseId"
+        app:argType="string" /> <!-- ✅ Passing Exercise ID -->
     </action>
 </navigation>
