@@ -20,8 +20,12 @@ abstract class MobileFinalDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: MobileFinalDatabase? = null
 
-        fun getDatabase(context: Context): MobileFinalDatabase {
-            return INSTANCE ?: synchronized(this) {
+        fun getDatabase(): MobileFinalDatabase {
+            return INSTANCE ?: throw IllegalStateException("Database not initialized")
+        }
+
+        fun initDatabase(context: Context) {
+            synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     MobileFinalDatabase::class.java,
@@ -31,5 +35,6 @@ abstract class MobileFinalDatabase : RoomDatabase() {
                 instance
             }
         }
+
     }
 }

@@ -1,11 +1,13 @@
 package com.example.mobilefinal.data.repository
 
 import android.util.Log
+import com.example.mobilefinal.data.MobileFinalDatabase
 import com.example.mobilefinal.data.model.Workout
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
 class WorkoutRepository {
+    private val workoutDao = MobileFinalDatabase.getDatabase().workoutDao()
     private val db = FirebaseFirestore.getInstance()
 
     suspend fun getWorkouts(): List<Workout> {
