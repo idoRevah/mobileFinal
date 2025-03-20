@@ -1,6 +1,7 @@
 package com.example.mobilefinal.data.repository
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import com.example.mobilefinal.data.MobileFinalDatabase
 import com.example.mobilefinal.data.model.Workout
 import com.google.firebase.firestore.FirebaseFirestore
@@ -8,25 +9,11 @@ import kotlinx.coroutines.tasks.await
 
 class WorkoutRepository {
     private val workoutDao = MobileFinalDatabase.getDatabase().workoutDao()
+
     private val db = FirebaseFirestore.getInstance()
 
-    suspend fun getWorkouts(): List<Workout> {
-        return try {
-            val querySnapshot = db.collection("workouts").get().await()
-            val workouts = mutableListOf<Workout>()
-
-            for (document in querySnapshot.documents) {
-                val workout = document.toObject(Workout::class.java)
-                workout?.let {
-                    workouts.add(it)
-                }
-            }
-
-            return workouts
-        } catch (e: Exception) {
-            Log.e("WorkoutRepository", "Error getting workouts", e)
-            emptyList()
-        }
+    fun getAllWorkouts(): LiveData<List<Workout>> {
+        return workoutDao.getAllWorkouts()
     }
 
     suspend fun getWorkoutById(workoutId: Int): Workout? {
