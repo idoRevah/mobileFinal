@@ -4,30 +4,40 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.mobilefinal.data.MobileFinalDatabase
 import com.example.mobilefinal.data.model.Workout
+import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 class WorkoutRepository {
     private val workoutDao = MobileFinalDatabase.getDatabase().workoutDao()
+    private val firestoreHandle = Firebase.firestore.collection("workouts")
 
     private val db = FirebaseFirestore.getInstance()
 
     fun getAllWorkouts(): LiveData<List<Workout>> {
+        syncWorkoutsFromFirebase() // ✅ Sync in the background
         return workoutDao.getAllWorkouts()
     }
 
-    suspend fun getWorkoutById(workoutId: Int): Workout? {
-// TODO: fix the workoutId.tostring...
-         try {
-            val documentSnapshot = db.collection("workouts")
-                .document(workoutId.toString())
-                .get()
-                .await()
+    fun getWorkoutById(workoutId: Int): LiveData<Workout>? {
+        return workoutDao.getWorkoutById(workoutId)
+    }
 
-             return documentSnapshot.toObject(Workout::class.java)
-        } catch (e: Exception) {
-            Log.e("WorkoutRepository", "Error fetching workout by ID", e)
-             return null
+    private fun syncWorkoutsFromFirebase() {
+        firestoreHandle.addSnapshotListener { snapshot, error ->
+            if (error != null || snapshot == null) return@addSnapshotListener
+
+            val workouts = snapshot.documents.mapNotNull { it.toObject(Workout::class.java) }
+
+            if (workouts.isNotEmpty()) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    workoutDao.insertWorkouts(workouts)
+                }
+            }
         }
     }
 

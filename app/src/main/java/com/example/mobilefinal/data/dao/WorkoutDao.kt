@@ -9,6 +9,9 @@ interface WorkoutDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertWorkout(workout: Workout)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertWorkouts(workouts: List<Workout>)
+
     @Update
     suspend fun updateWorkout(workout: Workout)
 
@@ -19,5 +22,5 @@ interface WorkoutDao {
     fun getAllWorkouts(): LiveData<List<Workout>>
 
     @Query("SELECT * FROM workouts WHERE id = :workoutId")
-    suspend fun getWorkoutById(workoutId: Int): Workout?
+    fun getWorkoutById(workoutId: Int): LiveData<Workout>?
 }

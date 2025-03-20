@@ -17,8 +17,8 @@ class WorkoutExercisesViewModel(private val state: SavedStateHandle) : ViewModel
     private val exercisesRepository: ExerciseRepository = ExerciseRepository()
     private val workoutRepository: WorkoutRepository = WorkoutRepository()
     private val _workout = MutableLiveData<Workout>()
-    private val _workoutExercises = MutableLiveData<List<Exercise>>()
-    val workoutExercises: LiveData<List<Exercise>> get() = _workoutExercises
+    private val _workoutExercises = MutableLiveData<List<Exercise>?>()
+    val workoutExercises: MutableLiveData<List<Exercise>?> get() = _workoutExercises
 
     init {
         loadWorkoutExercises(workoutId)
@@ -28,9 +28,8 @@ class WorkoutExercisesViewModel(private val state: SavedStateHandle) : ViewModel
         viewModelScope.launch { // Starts a coroutine (background thread)
             try {
                 val workout = WorkoutRepository().getWorkoutById(workoutId) ?: return@launch
-                _workout.postValue(workout) // ✅ This runs ONLY AFTER getWorkoutById() finishes
 
-                val exercises = workout.exerciseIds.mapNotNull { id ->
+                val exercises = workout.value?.exerciseIds?.mapNotNull { id ->
                     Log.d("WorkoutViewModel", "Fetching exercise with ID: $id")
                     ExerciseRepository().getExerciseById(id).getOrNull() // ✅ This runs ONLY AFTER workout.exerciseIds is available
                 }

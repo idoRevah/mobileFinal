@@ -37,7 +37,9 @@ class ExerciseListFragment: Fragment() {
 
         // bind between recyclerview to the viewmodel's workouts
         viewModel.workoutExercises.observe(viewLifecycleOwner) { exercises ->
-            exerciseAdapter.updateData(exercises)
+            if (exercises != null) {
+                exerciseAdapter.updateData(exercises)
+            }
         }
     }
 
