@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mobilefinal.R
 import com.example.mobilefinal.adapters.WorkoutExercisesListAdapter
 import com.example.mobilefinal.databinding.FragmentExerciseListBinding
-import com.example.mobilefinal.model.Exercise
+import com.example.mobilefinal.data.model.Exercise
 
 class ExerciseListFragment: Fragment() {
 
@@ -41,7 +41,7 @@ class ExerciseListFragment: Fragment() {
         }
     }
 
-    private fun getWorkoutIdFromArgs(): String {
+    private fun getWorkoutIdFromArgs(): Int {
         val args = ExerciseListFragmentArgs.fromBundle(requireArguments())
 
         return args.workoutId

@@ -1,6 +1,6 @@
-package com.example.mobilefinal.repository
+package com.example.mobilefinal.data.repository
 
-import com.example.mobilefinal.model.Exercise
+import com.example.mobilefinal.data.model.Exercise
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient

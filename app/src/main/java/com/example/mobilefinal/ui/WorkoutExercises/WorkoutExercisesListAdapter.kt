@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobilefinal.R
 import com.example.mobilefinal.databinding.ItemExerciseBinding
-import com.example.mobilefinal.model.Exercise
+import com.example.mobilefinal.data.model.Exercise
 
 class WorkoutExercisesListAdapter(
     private var exercises: List<Exercise>,

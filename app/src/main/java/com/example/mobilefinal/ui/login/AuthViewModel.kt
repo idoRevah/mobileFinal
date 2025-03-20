@@ -2,7 +2,7 @@ package com.example.mobilefinal.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mobilefinal.repository.AuthRepository
+import com.example.mobilefinal.data.repository.AuthRepository
 import kotlinx.coroutines.launch
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.LiveData

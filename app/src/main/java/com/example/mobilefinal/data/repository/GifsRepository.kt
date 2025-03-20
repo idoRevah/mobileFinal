@@ -1,4 +1,4 @@
-package com.example.mobilefinal.repository
+package com.example.mobilefinal.data.repository
 
 class GifsRepository {
     private val gifsMap: HashMap<String, String> = hashMapOf(

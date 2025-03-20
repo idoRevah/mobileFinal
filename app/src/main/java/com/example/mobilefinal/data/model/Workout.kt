@@ -1,10 +1,12 @@
-package com.example.mobilefinal.model
+package com.example.mobilefinal.data.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.firebase.firestore.DocumentId
 
-data class Workout (
-    @DocumentId
-    val id: String = "",
+@Entity(tableName = "workouts")
+data class Workout(
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val title: String = "",
     val description: String = "",
     val imageUrl: String = "",

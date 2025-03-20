@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mobilefinal.R
 import com.example.mobilefinal.databinding.FragmentWorkoutLibraryBinding
-import com.example.mobilefinal.model.Workout
+import com.example.mobilefinal.data.model.Workout
 
 class WorkoutLibraryFragment : Fragment() {
 
@@ -33,7 +33,7 @@ class WorkoutLibraryFragment : Fragment() {
 
         val adapter = WorkoutAdapter(emptyList()) { workout ->
             val bundle = Bundle().apply {
-                putString("workoutId", workout.id)
+                putInt("workoutId", workout.id)
             }
 
             findNavController().navigate(R.id.action_workoutLibraryFragment_to_exerciseListFragment, bundle)

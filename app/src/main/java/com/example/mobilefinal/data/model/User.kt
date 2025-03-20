@@ -1,4 +1,4 @@
-package com.example.mobilefinal.model
+package com.example.mobilefinal.data.model
 
 import com.google.firebase.firestore.DocumentId
 

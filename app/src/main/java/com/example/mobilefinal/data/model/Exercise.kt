@@ -1,4 +1,4 @@
-package com.example.mobilefinal.model
+package com.example.mobilefinal.data.model
 
 class Exercise(
     val id: String = "",

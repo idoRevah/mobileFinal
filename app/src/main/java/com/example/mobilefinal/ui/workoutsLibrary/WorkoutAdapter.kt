@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mobilefinal.R
-import com.example.mobilefinal.model.Workout
+import com.example.mobilefinal.data.model.Workout
 
 class WorkoutAdapter(
     private var workouts: List<Workout>,
