@@ -31,6 +31,7 @@ class WorkoutExercisesViewModel(private val state: SavedStateHandle) : ViewModel
                 _workout.postValue(workout) // ✅ This runs ONLY AFTER getWorkoutById() finishes
 
                 val exercises = workout.exerciseIds.mapNotNull { id ->
+                    Log.d("WorkoutViewModel", "Fetching exercise with ID: $id")
                     ExerciseRepository().getExerciseById(id).getOrNull() // ✅ This runs ONLY AFTER workout.exerciseIds is available
                 }
 
