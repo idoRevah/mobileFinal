@@ -24,7 +24,7 @@ class WorkoutRepository {
     }
 
     fun getWorkoutById(workoutId: String): LiveData<Workout>? {
-        return workoutDao.getWorkoutById(workoutId)
+        return workoutDao.getWorkoutById()
     }
 
     private fun syncWorkoutsFromFirebase() {
@@ -32,7 +32,8 @@ class WorkoutRepository {
             if (error != null || snapshot == null) return@addSnapshotListener
 
             Log.d("ola", snapshot.documents.toString())
-            val workouts = snapshot.documents.mapNotNull { it.toObject(Workout::class.java) }
+            val workouts =
+                snapshot.documents.mapNotNull { it.toObject(Workout::class.java)?.copy(id = it.id) }
 
             if (workouts.isNotEmpty()) {
                 CoroutineScope(Dispatchers.IO).launch {

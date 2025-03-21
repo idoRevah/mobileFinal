@@ -18,26 +18,24 @@ class WorkoutExercisesViewModel(private val state: SavedStateHandle) : ViewModel
     private val workoutRepository: WorkoutRepository = WorkoutRepository()
     private val _workout = MutableLiveData<Workout>()
     private val _workoutExercises = MutableLiveData<List<Exercise>?>()
-    val workoutExercises: MutableLiveData<List<Exercise>?> get() = _workoutExercises
+    val workoutExercises: LiveData<List<Exercise>?> get() = _workoutExercises
 
     init {
         loadWorkoutExercises(workoutId)
     }
 
     fun loadWorkoutExercises(workoutId: String) {
-        viewModelScope.launch { // Starts a coroutine (background thread)
-            try {
-                val workout = WorkoutRepository().getWorkoutById(workoutId) ?: return@launch
+        workoutRepository.getWorkoutById(workoutId)?.observeForever { workout ->
+            if (workout == null) {
+                Log.e("WorkoutViewModel", "Workout not found")
+                return@observeForever
+            }
 
-                val exercises = workout.value?.exerciseIds?.mapNotNull { id ->
-                    Log.d("WorkoutViewModel", "Fetching exercise with ID: $id")
-                    ExerciseRepository().getExerciseById(id).getOrNull() // ✅ This runs ONLY AFTER workout.exerciseIds is available
+            viewModelScope.launch {
+                val exercises = workout.exerciseIds.mapNotNull { id ->
+                    exercisesRepository.getExerciseById(id).getOrNull()
                 }
-
-                _workoutExercises.postValue(exercises) // ✅ This runs ONLY AFTER all exercises are fetched
-
-            } catch (e: Exception) {
-                Log.e("WorkoutViewModel", "Error loading workout and exercises", e)
+                _workoutExercises.postValue(exercises)
             }
         }
     }
