@@ -24,7 +24,7 @@ class WorkoutRepository {
     }
 
     fun getWorkoutById(workoutId: String): LiveData<Workout>? {
-        return workoutDao.getWorkoutById(workoutId)
+        return workoutDao.getWorkoutById()
     }
 
     private fun syncWorkoutsFromFirebase() {
