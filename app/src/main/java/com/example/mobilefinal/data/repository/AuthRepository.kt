@@ -1,6 +1,6 @@
 package com.example.mobilefinal.data.repository
 
-import com.example.mobilefinal.data.model.User
+import com.example.mobilefinal.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

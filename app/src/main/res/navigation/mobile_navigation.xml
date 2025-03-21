@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_login"
-        android:name="com.example.mobilefinal.ui.login.LoginFragment"
+        android:name="com.example.mobilefinal.ui.user.UserFragment"
         android:label="Login">
         <action
             android:id="@+id/action_login_to_home"
@@ -19,6 +19,12 @@
         android:name="com.example.mobilefinal.ui.workoutsLibrary.WorkoutLibraryFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_workout_library" />
+
+    <fragment
+        android:id="@+id/navigation_user"
+        android:name="com.example.mobilefinal.ui.user.UserFragment"
+        android:label="User"
+        tools:layout="@layout/fragment_user" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
