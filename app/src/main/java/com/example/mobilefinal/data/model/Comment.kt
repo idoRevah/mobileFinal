@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 data class Comment (
 //    @DocumentId
     val id: String = "",
-    val workoutId: Int = 0,
+    val workoutId: String = "",
     val userId: String = "",
     val imageBase64: String = "",
     val text: List<String> = emptyList(),

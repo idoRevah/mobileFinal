@@ -13,7 +13,7 @@ import com.example.mobilefinal.data.repository.WorkoutRepository
 import kotlinx.coroutines.launch
 
 class WorkoutExercisesViewModel(private val state: SavedStateHandle) : ViewModel() {
-    private val workoutId: Int = state["workoutId"] ?: 0
+    private val workoutId: String = state["workoutId"] ?: ""
     private val exercisesRepository: ExerciseRepository = ExerciseRepository()
     private val workoutRepository: WorkoutRepository = WorkoutRepository()
     private val _workout = MutableLiveData<Workout>()
@@ -24,7 +24,7 @@ class WorkoutExercisesViewModel(private val state: SavedStateHandle) : ViewModel
         loadWorkoutExercises(workoutId)
     }
 
-    fun loadWorkoutExercises(workoutId: Int) {
+    fun loadWorkoutExercises(workoutId: String) {
         viewModelScope.launch { // Starts a coroutine (background thread)
             try {
                 val workout = WorkoutRepository().getWorkoutById(workoutId) ?: return@launch

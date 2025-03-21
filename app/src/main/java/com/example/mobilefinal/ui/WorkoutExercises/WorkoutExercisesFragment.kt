@@ -43,7 +43,7 @@ class ExerciseListFragment: Fragment() {
         }
     }
 
-    private fun getWorkoutIdFromArgs(): Int {
+    private fun getWorkoutIdFromArgs(): String {
         val args = ExerciseListFragmentArgs.fromBundle(requireArguments())
 
         return args.workoutId

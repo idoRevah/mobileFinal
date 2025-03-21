@@ -54,14 +54,14 @@
         <!-- Passing workout ID when navigating -->
         <argument
             android:name="workoutId"
-            app:argType="integer" />
+            app:argType="string" />
     </fragment>
     <action
         android:id="@+id/action_workoutLibraryFragment_to_exerciseListFragment"
         app:destination="@id/exerciseListFragment" >
         <argument
             android:name="workoutId"
-            app:argType="integer" />
+            app:argType="string" />
     </action>
     <fragment
         android:id="@+id/exerciseDetailsFragment"

@@ -14,16 +14,16 @@ import kotlinx.coroutines.tasks.await
 
 class WorkoutRepository {
     private val workoutDao = MobileFinalDatabase.getDatabase().workoutDao()
-    private val firestoreHandle = Firebase.firestore.collection("workouts")
+    private val firestoreHandle = FirebaseFirestore.getInstance().collection("workouts")
 
     private val db = FirebaseFirestore.getInstance()
 
     fun getAllWorkouts(): LiveData<List<Workout>> {
-        syncWorkoutsFromFirebase() // ✅ Sync in the background
+        syncWorkoutsFromFirebase()
         return workoutDao.getAllWorkouts()
     }
 
-    fun getWorkoutById(workoutId: Int): LiveData<Workout>? {
+    fun getWorkoutById(workoutId: String): LiveData<Workout>? {
         return workoutDao.getWorkoutById(workoutId)
     }
 
@@ -31,6 +31,7 @@ class WorkoutRepository {
         firestoreHandle.addSnapshotListener { snapshot, error ->
             if (error != null || snapshot == null) return@addSnapshotListener
 
+            Log.d("ola", snapshot.documents.toString())
             val workouts = snapshot.documents.mapNotNull { it.toObject(Workout::class.java) }
 
             if (workouts.isNotEmpty()) {
@@ -59,7 +60,7 @@ class WorkoutRepository {
 //        }
     }
 
-    suspend fun likeWorkout(workoutId: Int) {
+    suspend fun likeWorkout(workoutId: String) {
 //        try {
 //            val workoutRef = db.collection("workouts").document(workoutId)
 //            db.runTransaction { transaction ->

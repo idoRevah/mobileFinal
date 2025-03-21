@@ -33,7 +33,7 @@ class WorkoutLibraryFragment : Fragment() {
 
         val adapter = WorkoutAdapter(emptyList()) { workout ->
             val bundle = Bundle().apply {
-                putInt("workoutId", workout.id)
+                putString("workoutId", workout.id)
             }
 
             findNavController().navigate(R.id.action_workoutLibraryFragment_to_exerciseListFragment, bundle)
