@@ -36,7 +36,7 @@ class ExerciseRepository {
     }
 
     suspend fun getExerciseById(exerciseId: String): Result<Exercise> {
-        return withContext(Dispatchers.IO) { // ✅ Run in background thread
+        return withContext(Dispatchers.IO) {
             val url = "https://exercisedb-api.vercel.app/api/v1/exercises/$exerciseId"
             val request = Request.Builder().url(url).build()
 
