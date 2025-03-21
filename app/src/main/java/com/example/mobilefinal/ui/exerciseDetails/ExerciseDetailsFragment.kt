@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.mobilefinal.databinding.FragmentExerciseDetailsBinding
-import com.example.mobilefinal.model.Exercise
+import com.example.mobilefinal.data.model.Exercise
 
 class ExerciseDetailsFragment : Fragment() {
     private var _binding: FragmentExerciseDetailsBinding? = null

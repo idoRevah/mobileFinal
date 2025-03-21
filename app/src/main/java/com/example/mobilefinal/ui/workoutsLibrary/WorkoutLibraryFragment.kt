@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mobilefinal.R
 import com.example.mobilefinal.databinding.FragmentWorkoutLibraryBinding
-import com.example.mobilefinal.model.Workout
+import com.example.mobilefinal.data.model.Workout
 
 class WorkoutLibraryFragment : Fragment() {
 

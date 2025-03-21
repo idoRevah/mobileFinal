@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mobilefinal.model.Exercise
-import com.example.mobilefinal.repository.ExerciseRepository
+import com.example.mobilefinal.data.model.Exercise
+import com.example.mobilefinal.data.repository.ExerciseRepository
 import kotlinx.coroutines.launch
 
 class ExerciseDetailsViewModel(private val state: SavedStateHandle) : ViewModel() {

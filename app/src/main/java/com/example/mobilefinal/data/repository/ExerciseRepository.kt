@@ -1,6 +1,6 @@
-package com.example.mobilefinal.repository
+package com.example.mobilefinal.data.repository
 
-import com.example.mobilefinal.model.Exercise
+import com.example.mobilefinal.data.model.Exercise
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
@@ -36,7 +36,7 @@ class ExerciseRepository {
     }
 
     suspend fun getExerciseById(exerciseId: String): Result<Exercise> {
-        return withContext(Dispatchers.IO) { // ✅ Run in background thread
+        return withContext(Dispatchers.IO) {
             val url = "https://exercisedb-api.vercel.app/api/v1/exercises/$exerciseId"
             val request = Request.Builder().url(url).build()
 
