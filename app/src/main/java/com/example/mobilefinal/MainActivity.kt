@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.mobilefinal.databinding.ActivityMainBinding
 import com.example.mobilefinal.ui.login.AuthViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,6 +29,17 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications, R.id.navigation_login)
         )
+
+
+
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            // User is already signed in, go directly to HomeFragment
+            navController.navigate(R.id.navigation_workoutLibrary)
+        } else {
+            // User is not signed in, show the AuthFragment
+            navController.navigate(R.id.authFragment)
+        }
+
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
