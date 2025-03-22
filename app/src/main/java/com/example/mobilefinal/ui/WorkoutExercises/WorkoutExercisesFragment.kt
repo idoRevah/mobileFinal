@@ -37,6 +37,9 @@ class ExerciseListFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         
           setupRecyclerView()
+        viewModel.isLoading.observe(viewLifecycleOwner) { loading ->
+            binding.progressBarLoading.visibility = if (loading) View.VISIBLE else View.GONE
+        }
 
         // bind between recyclerview to the viewmodel's workouts
         viewModel.workoutExercises.observe(viewLifecycleOwner) { exercises ->
