@@ -55,10 +55,10 @@ class ExerciseRepository {
 
                     var gifRepository: GifsRepository = GifsRepository()
                     exercise.gifUrl = gifRepository.getGifUrlById(exercise.id) ?: exercise.gifUrl
-                    Result.success(exercise) // ✅ Corrected return
+                    Result.success(exercise)
                 }
             } catch (e: Exception) {
-                Result.failure(e) // ✅ Error handling remains the same
+                Result.failure(e)
             }
         }
     }

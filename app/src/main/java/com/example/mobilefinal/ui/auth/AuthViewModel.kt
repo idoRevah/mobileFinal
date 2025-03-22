@@ -17,14 +17,12 @@ class AuthViewModel : ViewModel() {
     private val _authError = MutableLiveData<String?>()
     val authError: LiveData<String?> get() = _authError
 
-    // 🔹 Check if user is already logged in
     fun checkUserStatus() {
         if (authRepository.isUserLoggedIn()) {
             _user.value = User(authRepository.getCurrentUser()?.id ?: "", authRepository.getCurrentUser()?.email ?: "")
         }
     }
 
-    // 🔹 Register user
     fun register(email: String, password: String, profile_picture: String) {
         viewModelScope.launch {
             val result = authRepository.register(email, password, profile_picture)
@@ -33,7 +31,6 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    // 🔹 Log in user
     fun login(email: String, password: String) {
         viewModelScope.launch {
             val result = authRepository.login(email, password)
@@ -42,7 +39,6 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    // 🔹 Log out user
     fun logout() {
         authRepository.logout()
         _user.value = null

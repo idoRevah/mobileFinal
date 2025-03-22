@@ -37,7 +37,7 @@ class AuthFragment : Fragment() {
         viewModel.user.observe(viewLifecycleOwner) { user ->
             if (user != null) {
                 Toast.makeText(requireContext(), "Welcome, ${user.email}", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.action_authFragment_to_workoutLibraryFragment) // Navigate after login
+                findNavController().navigate(R.id.action_authFragment_to_workoutLibraryFragment)
             }
         }
 

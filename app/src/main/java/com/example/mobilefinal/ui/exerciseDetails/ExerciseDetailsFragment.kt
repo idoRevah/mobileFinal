@@ -29,7 +29,6 @@ class ExerciseDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // bind between recyclerview to the viewmodel's workouts
         viewModel.exercise.observe(viewLifecycleOwner) { exercise ->
             updateUI(exercise)
         }
