@@ -1,89 +1,83 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/commentsRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:background="@color/white"
-    android:padding="16dp">
+    android:orientation="vertical"
+    tools:context=".ui.workoutThread.CommentsThreadFragment">
 
-    <!-- Header (Title) -->
-    <TextView
-        android:id="@+id/textViewWorkoutTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Workout Discussion"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:paddingBottom="8dp"/>
-
-    <!-- Opinions RecyclerView -->
+    <!-- Thread List -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewOpinions"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:nestedScrollingEnabled="false"/>
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingHorizontal="12dp" />
 
-    <!-- Opinion Input & Upload -->
-    <!-- Input, Preview & Upload Buttons -->
+    <!-- Input Section -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:clipToPadding="false"
+        android:elevation="6dp"
         android:orientation="vertical"
-        android:padding="8dp"
-        android:background="@color/light_gray"
-        android:elevation="2dp"
-        android:layout_marginBottom="80dp">
+        android:padding="8dp">
 
-        <!-- EditText -->
-        <EditText
-            android:id="@+id/editTextOpinion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Write your opinion..."
-            android:textSize="14sp"
-            android:maxLines="3"
-            android:minHeight="48dp"
-            android:background="@drawable/rounded_edittext" />
-
-        <!-- Image Preview (Optional) -->
-        <ImageView
-            android:id="@+id/imagePreview"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="8dp"
-            android:scaleType="centerCrop"
-            android:visibility="gone"
-            android:background="@drawable/rounded_edittext" />
-
-        <!-- Action Row (Upload + Send) -->
+        <!-- Input Row -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:gravity="end"
-            android:layout_marginTop="8dp">
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp">
+
+            <EditText
+                android:id="@+id/editTextOpinion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:hint="Write your opinion..."
+                android:maxLines="4"
+                android:minHeight="40dp"
+                android:padding="4dp"
+                android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/buttonUploadImage"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_upload"
-                android:contentDescription="Upload Image"
+                android:contentDescription="Upload"
                 android:padding="8dp"
-                 />
+                android:src="@drawable/ic_upload"
+                app:tint="@color/purple_700" />
 
             <ImageView
                 android:id="@+id/buttonSendOpinion"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_send"
-                android:contentDescription="Send Opinion"
+                android:contentDescription="Send"
                 android:padding="8dp"
-                android:tint="@color/purple_700"
-                tools:ignore="UseAppTint" />
+                android:src="@drawable/ic_send"
+                app:tint="@color/purple_700" />
         </LinearLayout>
-    </LinearLayout>
 
+        <!-- Optional Image Preview -->
+        <ImageView
+            android:id="@+id/imagePreview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_edittext"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            android:visibility="gone" />
+    </LinearLayout>
 </LinearLayout>
