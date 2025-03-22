@@ -12,7 +12,6 @@ class AuthRepository {
     private val auth: FirebaseAuth = Firebase.auth
     private val firestore = Firebase.firestore.collection("users")
 
-    // 🔹 Login user with email & password
     suspend fun login(email: String, password: String): Result<User> {
         return try {
             auth.signInWithEmailAndPassword(email, password).await()
@@ -25,26 +24,24 @@ class AuthRepository {
         }
     }
 
-    // 🔹 Register user & store in Firestore
     suspend fun register(email: String, password: String): Result<User> {
         return try {
             auth.createUserWithEmailAndPassword(email, password).await()
             val firebaseUser = auth.currentUser ?: return Result.failure(Exception("User is null"))
 
             val user = User(id = firebaseUser.uid, email = firebaseUser.email ?: "")
-            firestore.document(user.id).set(user).await() // Save user to Firestore
+            UserRepository().upsertUser(user)
+
             Result.success(user)
         } catch (e: Exception) {
             Result.failure(e)
         }
     }
 
-    // 🔹 Log out user
     fun logout() {
         auth.signOut()
     }
 
-    // 🔹 Check if user is logged in
     fun isUserLoggedIn(): Boolean {
         return auth.currentUser != null
     }

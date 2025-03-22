@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/white"
+    android:padding="32dp">
+
+    <!-- Profile Picture with Border & Shadow -->
+    <FrameLayout
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/profile_picture_border">
+
+        <ImageView
+            android:id="@+id/profileImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_user_placeholder"
+            android:scaleType="centerCrop"
+            android:clipToOutline="true"/>
+    </FrameLayout>
+
+    <!-- User Email -->
+    <TextView
+        android:id="@+id/tvUserEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="user@example.com"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:paddingVertical="8dp"
+        android:fontFamily="sans-serif-medium"/>
+
+    <!-- Divider Line (Fixed to Full Width) -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/light_gray"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Sign Out Button with Rounded Corners -->
+    <Button
+        android:id="@+id/btnSignOut"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Sign Out"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="sans-serif-medium"
+        android:padding="12dp"/>
+</LinearLayout>

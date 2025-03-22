@@ -9,13 +9,11 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.mobilefinal.databinding.ActivityMainBinding
-import com.example.mobilefinal.ui.login.AuthViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val viewModel: AuthViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,10 +31,8 @@ class MainActivity : AppCompatActivity() {
 
 
         if (FirebaseAuth.getInstance().currentUser != null) {
-            // User is already signed in, go directly to HomeFragment
             navController.navigate(R.id.navigation_workoutLibrary)
         } else {
-            // User is not signed in, show the AuthFragment
             navController.navigate(R.id.authFragment)
         }
 
@@ -46,16 +42,9 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        viewModel.authState.observe(this) { isLoggedIn ->
-            if (!isLoggedIn) {
-                navController.navigate(R.id.navigation_login)
-            }
-        }
-
-        viewModel.checkUserLoggedIn() // Check authentication state on startup
     }
     override fun onSupportNavigateUp(): Boolean {
-        onBackPressedDispatcher.onBackPressed() // 🔙 Handle Back Action
+        onBackPressedDispatcher.onBackPressed()
         return true
     }
 }

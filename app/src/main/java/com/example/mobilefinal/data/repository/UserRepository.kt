@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
 
 class UserRepository {
     private val usersDao = MobileFinalDatabase.getDatabase().userDao()
-    private val firestoreHandle = Firebase.firestore.collection("user")
+    private val firestoreHandle = Firebase.firestore.collection("users")
 
     suspend fun upsertUser(user: User) = withContext(Dispatchers.IO) {
         firestoreHandle.document(user.id).set(user).await()
