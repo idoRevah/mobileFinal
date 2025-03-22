@@ -14,6 +14,7 @@ import com.example.mobilefinal.R
 import com.example.mobilefinal.adapters.WorkoutExercisesListAdapter
 import com.example.mobilefinal.databinding.FragmentExerciseListBinding
 import com.example.mobilefinal.data.model.Exercise
+import com.example.mobilefinal.ui.workoutThread.CommentsThreadFragmentDirections
 
 class ExerciseListFragment: Fragment() {
 
@@ -41,6 +42,15 @@ class ExerciseListFragment: Fragment() {
                 exerciseAdapter.updateData(exercises)
             }
         }
+
+
+        binding.cardViewComments.setOnClickListener {
+        val bundle = Bundle().apply {
+            putString("workoutId", getWorkoutIdFromArgs())
+        }
+            findNavController().navigate(R.id.action_exerciseListFragment_to_commentsThreadFragment, bundle)
+        }
+
     }
 
     private fun getWorkoutIdFromArgs(): String {

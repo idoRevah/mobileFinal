@@ -11,7 +11,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
-        android:background="@android:color/transparent"
+        android:background="@drawable/circle_background"
         android:contentDescription="Profile Picture"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_user_placeholder" />

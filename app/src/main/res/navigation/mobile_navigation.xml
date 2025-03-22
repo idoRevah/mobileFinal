@@ -78,7 +78,21 @@
             android:id="@+id/action_authFragment_to_workoutLibraryFragment"
             app:destination="@id/navigation_workoutLibrary" />
     </fragment>
+    <fragment
+        android:id="@+id/commentsThreadFragment"
+        android:name="com.example.mobilefinal.ui.workoutThread.CommentsThreadFragment"
+        android:label="Workout Discussion">
+
+        <argument
+            android:name="workoutId"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+
     <action
         android:id="@+id/action_profileFragment_to_authFragment"
         app:destination="@id/authFragment" />
+    <action
+        android:id="@+id/action_exerciseListFragment_to_commentsThreadFragment"
+        app:destination="@id/commentsThreadFragment" />
 </navigation>
