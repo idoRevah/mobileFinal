@@ -36,19 +36,5 @@ data class User(
                 display_name = user.displayName ?: ""
             )
         }
-//
-//        suspend fun downloadImageAndConvertToBase64Suspend(
-//            imageUrl: String,
-//            context: Context
-//        ): String {
-//            return suspendCancellableCoroutine { continuation ->
-//                downloadImageAndConvertToBase64(imageUrl, context) { base64String ->
-//                    continuation.resume(base64String ?: "") { throwable ->
-//                        continuation.resumeWithException(throwable)
-//                    }
-//                }
-//            }
-//        }
-
     }
 }

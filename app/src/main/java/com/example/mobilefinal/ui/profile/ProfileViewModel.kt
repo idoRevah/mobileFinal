@@ -43,4 +43,21 @@ class ProfileViewModel() : ViewModel() {
         authRepository.logout()
         _user.value = null
     }
+
+    fun saveChanges(display_name: String, updatedImageBase64: String?) {
+        viewModelScope.launch {
+            val currentUser = _user.value ?: return@launch
+            val updatedUser = currentUser.copy(
+                display_name = display_name,
+                profile_picture = updatedImageBase64
+            )
+            try {
+                userRepository.upsertUser(updatedUser)
+                _user.postValue(updatedUser)
+            } catch (e: Exception) {
+                _error.postValue("Failed to update profile: ${e.message}")
+            }
+        }
+    }
+
 }
