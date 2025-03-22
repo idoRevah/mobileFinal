@@ -1,14 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:background="@color/white"
     android:padding="32dp">
 
-    <!-- Profile Picture with Border & Shadow -->
+    <!-- Profile Picture -->
     <FrameLayout
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -22,38 +21,55 @@
             android:background="@drawable/circle_background"
             android:src="@drawable/ic_user_placeholder"
             android:scaleType="centerCrop"
-            android:clipToOutline="true"/>
+            android:clipToOutline="true" />
     </FrameLayout>
 
-    <!-- User Email -->
+    <!-- Non-editable Email -->
     <TextView
         android:id="@+id/tvUserEmail"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="user@example.com"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:paddingVertical="8dp"
-        android:fontFamily="sans-serif-medium"/>
+        android:textSize="16sp"
+        android:padding="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/rounded_edittext"
+        android:textColor="@color/black" />
 
-    <!-- Divider Line (Fixed to Full Width) -->
-    <View
+    <!-- Editable Display Name -->
+    <EditText
+        android:id="@+id/etDisplayName"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/light_gray"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginBottom="24dp"/>
+        android:layout_height="wrap_content"
+        android:hint="Display Name"
+        android:textSize="16sp"
+        android:padding="12dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rounded_edittext"
+        android:textColor="@color/black"
+        android:textColorHint="@color/light_gray" />
 
-    <!-- Sign Out Button with Rounded Corners -->
+    <!-- Save Button -->
+    <Button
+        android:id="@+id/btnSaveChanges"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:text="Save Changes"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_button" />
+
+    <!-- Sign Out Button -->
     <Button
         android:id="@+id/btnSignOut"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="Sign Out"
+        android:textAllCaps="false"
         android:textSize="16sp"
         android:textColor="@color/white"
-        android:background="@drawable/rounded_button"
-        android:fontFamily="sans-serif-medium"
-        android:padding="12dp"/>
+        android:background="@drawable/rounded_button" />
+
 </LinearLayout>
