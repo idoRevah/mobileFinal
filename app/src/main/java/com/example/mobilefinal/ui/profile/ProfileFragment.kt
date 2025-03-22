@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.mobilefinal.R
 import com.example.mobilefinal.databinding.FragmentProfileBinding
+import com.example.mobilefinal.utils.ImageUtils
 
 class ProfileFragment : Fragment() {
 
@@ -33,12 +34,11 @@ class ProfileFragment : Fragment() {
         viewModel.user.observe(viewLifecycleOwner) { user ->
             user?.let {
                 binding.tvUserEmail.text = it.email
-
-                // Optional: Load profile image if you have one
-//                Glide.with(this)
-//                    .load(it.profilePictureUrl) // Make sure your model has this if needed
-//                    .placeholder(com.example.mobilefinal.R.drawable.ic_user_placeholder)
-//                    .into(binding.profileImageView)
+                if (user.profile_picture != null && user.profile_picture != "") {
+                    binding.profileImageView.setImageBitmap(ImageUtils.base64ToBitmap(it.profile_picture.toString()))
+                } else {
+                    binding.profileImageView.setImageResource(R.drawable.ic_user_placeholder)
+                }
             }
         }
 
@@ -48,8 +48,6 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(R.id.action_profileFragment_to_authFragment) // Navigate after login
         }
 
-        // Load user from repo (from Room or Firestore)
-//        viewModel.fetchCurrentUser()
     }
 
     override fun onDestroyView() {

@@ -11,7 +11,7 @@ import com.example.mobilefinal.data.dao.WorkoutDao
 import com.example.mobilefinal.data.model.User
 import com.example.mobilefinal.data.model.Workout
 
-@Database(entities = [Workout::class, User::class], version = 2, exportSchema = false)
+@Database(entities = [Workout::class, User::class], version = 3, exportSchema = false)
 @TypeConverters(StringListConverter::class)
 abstract class MobileFinalDatabase : RoomDatabase() {
     abstract fun workoutDao(): WorkoutDao

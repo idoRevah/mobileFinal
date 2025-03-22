@@ -24,12 +24,12 @@ class AuthRepository {
         }
     }
 
-    suspend fun register(email: String, password: String): Result<User> {
+    suspend fun register(email: String, password: String, base64Image: String? = null): Result<User> {
         return try {
             auth.createUserWithEmailAndPassword(email, password).await()
             val firebaseUser = auth.currentUser ?: return Result.failure(Exception("User is null"))
 
-            val user = User(id = firebaseUser.uid, email = firebaseUser.email ?: "")
+            val user = User(id = firebaseUser.uid, email = firebaseUser.email ?: "", profile_picture = base64Image)
             UserRepository().upsertUser(user)
 
             Result.success(user)

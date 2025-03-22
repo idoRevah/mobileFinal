@@ -1,49 +1,67 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="32dp"
+    android:background="#F9F9F9"
     android:gravity="center"
-    android:background="#F9F9F9">
+    android:orientation="vertical"
+    android:padding="32dp">
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgProfile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:contentDescription="Profile Picture"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_user_placeholder" />
+    <TextView
+        android:id="@+id/tvChangePicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change profile picture"
+        android:textColor="@color/appleBlue"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
+        android:layout_gravity="center" />
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/rounded_edittext"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:background="@drawable/rounded_edittext"
-        android:padding="16dp"
-        android:layout_marginBottom="16dp" />
+        android:padding="16dp" />
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/rounded_edittext"
         android:hint="Password"
         android:inputType="textPassword"
-        android:background="@drawable/rounded_edittext"
-        android:padding="16dp"
-        android:layout_marginBottom="24dp" />
+        android:padding="16dp" />
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:textStyle="bold"
-        android:backgroundTint="@color/appleBlue"
-        android:textColor="@android:color/white"
         android:layout_marginBottom="12dp"
-        android:padding="12dp" />
+        android:backgroundTint="@color/appleBlue"
+        android:padding="12dp"
+        android:text="Login"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="Create an account"
         android:textColor="@color/appleBlue"
-        android:textSize="14sp"
-        android:layout_gravity="center" />
+        android:textSize="14sp" />
 </LinearLayout>

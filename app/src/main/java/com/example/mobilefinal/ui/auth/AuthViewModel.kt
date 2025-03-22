@@ -25,9 +25,9 @@ class AuthViewModel : ViewModel() {
     }
 
     // 🔹 Register user
-    fun register(email: String, password: String) {
+    fun register(email: String, password: String, profile_picture: String) {
         viewModelScope.launch {
-            val result = authRepository.register(email, password)
+            val result = authRepository.register(email, password, profile_picture)
             result.onSuccess { _user.postValue(it) }
                 .onFailure { _authError.postValue(it.message) }
         }
