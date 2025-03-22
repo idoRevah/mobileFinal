@@ -23,10 +23,15 @@ class CommentsThreadFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: CommentViewModel by viewModels()
 
-    private val adapter = CommentAdapter()
+    private val adapter = CommentAdapter(
+        onDeleteClick = { comment ->
+            viewModel.deleteComment(comment.id)
+        },
+        onEditClick = { comment ->
+            // TODO: Open dialog or input to edit comment
+        })
     private var base64Image: String? = null
 
-    // ✅ Modern Image Picker
     private val imagePickerLauncher = registerForActivityResult(
         ActivityResultContracts.GetContent()
     ) { uri ->

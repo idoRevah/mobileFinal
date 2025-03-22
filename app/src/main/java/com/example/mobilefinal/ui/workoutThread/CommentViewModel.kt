@@ -19,4 +19,10 @@ class CommentViewModel () : ViewModel() {
             repository.addComment(comment)
         }
     }
+
+    fun deleteComment(commentId: String) {
+        viewModelScope.launch {
+            repository.deleteCommentById(commentId)
+        }
+    }
 }

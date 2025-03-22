@@ -52,4 +52,13 @@ class CommentRepository {
         }
     }
 
+    suspend fun deleteCommentById(commentId: String) {
+        try {
+            commentDao.deleteCommentById(commentId)
+            firestore.document(commentId).delete().await()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
 }

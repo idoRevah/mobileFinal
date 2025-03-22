@@ -20,4 +20,8 @@ interface CommentDao {
 
     @Query("DELETE FROM comments WHERE id NOT IN (:commentIds)")
     suspend fun deleteCommentsNotIn(commentIds: List<String>)
+
+    @Query("DELETE FROM comments WHERE id = :commentId")
+    suspend fun deleteCommentById(commentId: String)
+
 }
