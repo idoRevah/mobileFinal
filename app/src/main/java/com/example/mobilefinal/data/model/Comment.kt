@@ -1,15 +1,17 @@
 package com.example.mobilefinal.data.model
 
-import java.time.LocalDateTime
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import java.util.Date
 
-//import com.google.firebase.firestore.DocumentId
-
-data class Comment (
-//    @DocumentId
-    val id: String = "",
+@Entity(tableName = "comments")
+data class Comment(
+    @PrimaryKey val id: String = "",
     val workoutId: String = "",
-    val userId: String = "",
-    val imageBase64: String = "",
-    val text: List<String> = emptyList(),
-    val createDateTime: LocalDateTime
+    val content: String = "",
+    val image: String? = null,
+    val authorUserId: String = "",
+    val authorNickname: String = "",
+    var authorProfileImage: String? = null,
+    val createdAt: Long = 0,
 )
