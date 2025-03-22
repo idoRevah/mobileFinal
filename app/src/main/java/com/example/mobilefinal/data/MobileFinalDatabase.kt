@@ -6,15 +6,17 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.mobilefinal.data.converters.StringListConverter
+import com.example.mobilefinal.data.dao.UserDao
 import com.example.mobilefinal.data.dao.WorkoutDao
+import com.example.mobilefinal.data.model.User
 import com.example.mobilefinal.data.model.Workout
 
-@Database(entities = [Workout::class], version = 1, exportSchema = false)
+@Database(entities = [Workout::class, User::class], version = 3, exportSchema = false)
 @TypeConverters(StringListConverter::class)
 abstract class MobileFinalDatabase : RoomDatabase() {
     abstract fun workoutDao(): WorkoutDao
 //    abstract fun exerciseDao(): ExerciseDao
-//    abstract fun userDao(): UserDao
+    abstract fun userDao(): UserDao
 
     companion object {
         @Volatile

@@ -9,12 +9,11 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.mobilefinal.databinding.ActivityMainBinding
-import com.example.mobilefinal.ui.login.AuthViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val viewModel: AuthViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,24 +25,26 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
 
         val appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications, R.id.navigation_login)
+            setOf(R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
         )
+
+
+
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            navController.navigate(R.id.navigation_workoutLibrary)
+        } else {
+            navController.navigate(R.id.authFragment)
+        }
+
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        viewModel.authState.observe(this) { isLoggedIn ->
-            if (!isLoggedIn) {
-                navController.navigate(R.id.navigation_login)
-            }
-        }
-
-        viewModel.checkUserLoggedIn() // Check authentication state on startup
     }
     override fun onSupportNavigateUp(): Boolean {
-        onBackPressedDispatcher.onBackPressed() // 🔙 Handle Back Action
+        onBackPressedDispatcher.onBackPressed()
         return true
     }
 }
