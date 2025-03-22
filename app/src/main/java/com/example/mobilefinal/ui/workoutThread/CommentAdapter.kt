@@ -8,13 +8,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobilefinal.R
 import com.example.mobilefinal.data.model.Comment
+import com.example.mobilefinal.data.repository.AuthRepository
+import com.example.mobilefinal.data.repository.CommentRepository
 import com.example.mobilefinal.databinding.ItemThreadBinding
 import com.example.mobilefinal.utils.ImageUtils
+import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class CommentAdapter : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
+class CommentAdapter(
+    private val onDeleteClick: (Comment) -> Unit,
+    private val onEditClick: (Comment) -> Unit
+) : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
 
     private val commentsList = mutableListOf<Comment>()
 
@@ -34,6 +40,18 @@ class CommentAdapter : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() 
 
             loadProfileImage(comment)
             loadCommentImage(comment)
+
+            val currentUserId = AuthRepository().getCurrentUser()?.id
+            binding.actionButtonsContainer.visibility =
+                if (comment.authorUserId == currentUserId) View.VISIBLE else View.GONE
+
+            binding.btnDeleteComment.setOnClickListener {
+                onDeleteClick(comment)
+            }
+
+            binding.btnEditComment.setOnClickListener {
+                onEditClick(comment)
+            }
         }
 
         private fun loadProfileImage(comment: Comment) {
@@ -47,7 +65,7 @@ class CommentAdapter : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() 
 
         private fun loadCommentImage(comment: Comment) {
             if (comment.image != null && comment.image != "") {
-                val commentBitmap = ImageUtils.base64ToBitmap(comment.image)
+                val commentBitmap = ImageUtils.base64ToBitmap(comment.image!!)
                 binding.imageViewThreadImage.visibility = View.VISIBLE
                 binding.imageViewThreadImage.setImageBitmap(commentBitmap)
             } else {

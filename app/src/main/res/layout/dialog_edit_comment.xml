@@ -1,0 +1,28 @@
+<!-- dialog_edit_comment.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editTextComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Edit your comment" />
+
+    <ImageView
+        android:id="@+id/imagePreview"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+        android:layout_marginTop="12dp" />
+
+    <Button
+        android:id="@+id/buttonUploadImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload New Image"
+        android:layout_marginTop="8dp" />
+</LinearLayout>
