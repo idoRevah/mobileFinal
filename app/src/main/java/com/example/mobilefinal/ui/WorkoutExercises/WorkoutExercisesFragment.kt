@@ -14,6 +14,7 @@ import com.example.mobilefinal.R
 import com.example.mobilefinal.adapters.WorkoutExercisesListAdapter
 import com.example.mobilefinal.databinding.FragmentExerciseListBinding
 import com.example.mobilefinal.data.model.Exercise
+import com.example.mobilefinal.data.model.Workout
 import com.example.mobilefinal.ui.workoutThread.CommentsThreadFragmentDirections
 
 class ExerciseListFragment: Fragment() {
@@ -22,6 +23,7 @@ class ExerciseListFragment: Fragment() {
     private lateinit var exerciseAdapter: WorkoutExercisesListAdapter
     private val viewModel: WorkoutExercisesViewModel by viewModels()
     private val exercises = mutableListOf<Exercise>()
+    private val workout = Workout()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -42,8 +44,12 @@ class ExerciseListFragment: Fragment() {
                 exerciseAdapter.updateData(exercises)
             }
         }
-
-
+        viewModel.workout.observe(viewLifecycleOwner) { workout ->
+            if (workout != null) {
+                Log.d("ExerciseListFragment", "Workout title: ${workout.title}")
+                binding.workoutTitle.text = workout.title
+            }
+        }
         binding.cardViewComments.setOnClickListener {
         val bundle = Bundle().apply {
             putString("workoutId", getWorkoutIdFromArgs())

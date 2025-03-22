@@ -15,16 +15,8 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.mobilefinal.ui.profile.ProfileFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_profile"
         tools:layout="@layout/fragment_dashboard" />
-
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.mobilefinal.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
-
-
 
 
 
@@ -36,7 +28,7 @@
     <fragment
         android:id="@+id/navigation_workoutLibrary"
         android:name="com.example.mobilefinal.ui.workoutsLibrary.WorkoutLibraryFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_home"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment

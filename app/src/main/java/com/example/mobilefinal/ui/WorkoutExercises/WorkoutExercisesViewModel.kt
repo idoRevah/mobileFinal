@@ -16,7 +16,8 @@ class WorkoutExercisesViewModel(private val state: SavedStateHandle) : ViewModel
     private val workoutId: String = state["workoutId"] ?: ""
     private val exercisesRepository: ExerciseRepository = ExerciseRepository()
     private val workoutRepository: WorkoutRepository = WorkoutRepository()
-    private val _workout = MutableLiveData<Workout>()
+    private val currWorkout = MutableLiveData<Workout>()
+    val workout: LiveData<Workout> get() = currWorkout
     private val _workoutExercises = MutableLiveData<List<Exercise>?>()
     val workoutExercises: LiveData<List<Exercise>?> get() = _workoutExercises
 
@@ -26,6 +27,8 @@ class WorkoutExercisesViewModel(private val state: SavedStateHandle) : ViewModel
 
     fun loadWorkoutExercises(workoutId: String) {
         workoutRepository.getWorkoutById(workoutId)?.observeForever { workout ->
+            currWorkout.postValue(workout)
+
             if (workout == null) {
                 Log.e("WorkoutViewModel", "Workout not found")
                 return@observeForever
