@@ -25,4 +25,9 @@ class CommentViewModel () : ViewModel() {
             repository.deleteCommentById(commentId)
         }
     }
-}
+
+    fun updateComment(comment: Comment) {
+        viewModelScope.launch {
+            repository.updateComment(comment)
+        }
+    }}

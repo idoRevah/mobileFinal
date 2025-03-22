@@ -65,7 +65,7 @@ class CommentAdapter(
 
         private fun loadCommentImage(comment: Comment) {
             if (comment.image != null && comment.image != "") {
-                val commentBitmap = ImageUtils.base64ToBitmap(comment.image)
+                val commentBitmap = ImageUtils.base64ToBitmap(comment.image!!)
                 binding.imageViewThreadImage.visibility = View.VISIBLE
                 binding.imageViewThreadImage.setImageBitmap(commentBitmap)
             } else {

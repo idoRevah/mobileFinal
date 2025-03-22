@@ -8,8 +8,8 @@ import java.util.Date
 data class Comment(
     @PrimaryKey val id: String = "",
     val workoutId: String = "",
-    val content: String = "",
-    val image: String? = null,
+    var content: String = "",
+    var image: String? = null,
     val authorUserId: String = "",
     val authorNickname: String = "",
     var authorProfileImage: String? = null,
